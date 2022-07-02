@@ -21,6 +21,9 @@ function inputGridCount(){
     console.log(typeof input);
     return createBoxes(input);
 }
+let mouseDown = false
+document.body.onmousedown = () => (mouseDown = true)
+document.body.onmouseup = () => (mouseDown = false)
 
 function createBoxes(userInput){
     let gridCount = userInput;
@@ -33,7 +36,8 @@ function createBoxes(userInput){
         gridBox.style.border = "1px solid black";
         gridBox.style.padding = '20px';
         container.appendChild(gridBox);
-        gridBox.addEventListener('click', draw);
+        gridBox.addEventListener('mouseover', draw);
+        gridBox.addEventListener('mousedown', draw);
     }
 }
 
@@ -51,10 +55,11 @@ function addOneChild(){
     gridBox.style.border = "1px solid black";
     gridBox.style.padding = '20px';
     container.appendChild(gridBox);
-    gridBox.addEventListener('click', draw);
+    gridBox.addEventListener('mouseover', draw);
 }
 
 function draw(e){
+    if (e.type === 'mouseover' && !mouseDown) return
     let x = Math.floor(Math.random()*255);
     let y = Math.floor(Math.random()*255);
     let z = Math.floor(Math.random()*255);
