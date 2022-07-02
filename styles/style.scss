@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Space+Mono:wght@700&display=swap');
+$tabletsize: 48em; 
+$mobilesize: 25em;
 @mixin flex-all-center {
     display: flex;
     justify-content: center;
@@ -16,19 +18,25 @@ body{
 #header-container{
     background-color: #1E1E1E;
     color:white;
-    min-height: 100px;
-    padding: 10px 25px;
+    min-height: 30px;
+    padding: 0px 150px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    a{
+        color:white;
+        text-decoration: none;
+    }
 }
 .container{
-    padding: 10px 25px;
+    padding: 10px 150px;
     display: flex;
     flex-direction: column;
-    #btn{
-        font-size: 30px;
-        width: 100px;
-        height: 50px;
+    gap: 10px;
+    #btn-grid{
+        font-size: 20px;
+        width: 60px;
+        height: 30px;
         border-radius: 10px;
         border:none;
         cursor: pointer;
@@ -37,5 +45,44 @@ body{
             background-color: #1E1E1E;
             color: white;
         }
+    }
+    #btn-minus,#btn-add,#btn-trash{
+        @extend #btn-grid;
+    }
+}
+.information{
+    font-family: 'Inter', sans-serif;
+    padding: 0px 150px;
+    text-align: center;
+    @include flex-all-center();
+}
+@media screen and (max-width:$tabletsize){
+    #header-container{
+        padding: 0px 20px;
+    }
+    .container{
+        padding: 10px 20px;
+    }
+    .information{
+        padding: 0px 20px;
+    }
+}
+@media screen and (max-width:$mobilesize){
+    #header-container{
+        @include flex-all-center();
+        flex-direction: column;
+        padding: 0px 2.5px;
+    }
+    .container{
+        padding: 10px 2.5px;
+    }
+    #buttons{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+    .information{
+        padding: 0px 2.5px;
     }
 }

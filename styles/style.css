@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Space+Mono:wght@700&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -13,27 +13,79 @@ body {
 #header-container {
   background-color: #1E1E1E;
   color: white;
-  min-height: 100px;
-  padding: 10px 25px;
+  min-height: 30px;
+  padding: 0px 150px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+#header-container a {
+  color: white;
+  text-decoration: none;
 }
 
 .container {
-  padding: 10px 25px;
+  padding: 10px 150px;
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
-.container #btn {
-  font-size: 30px;
-  width: 100px;
-  height: 50px;
+.container #btn-grid, .container #btn-minus, .container #btn-add, .container #btn-trash {
+  font-size: 20px;
+  width: 60px;
+  height: 30px;
   border-radius: 10px;
   border: none;
   cursor: pointer;
   transition: 250ms ease-in-out;
 }
-.container #btn:hover {
+.container #btn-grid:hover, .container #btn-minus:hover, .container #btn-add:hover, .container #btn-trash:hover {
   background-color: #1E1E1E;
   color: white;
+}
+.information {
+  font-family: "Inter", sans-serif;
+  padding: 0px 150px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 48em) {
+  #header-container {
+    padding: 0px 20px;
+  }
+
+  .container {
+    padding: 10px 20px;
+  }
+
+  .information {
+    padding: 0px 20px;
+  }
+}
+@media screen and (max-width: 25em) {
+  #header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0px 2.5px;
+  }
+
+  .container {
+    padding: 10px 2.5px;
+  }
+
+  #buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .information {
+    padding: 0px 2.5px;
+  }
 }/*# sourceMappingURL=style.css.map */
