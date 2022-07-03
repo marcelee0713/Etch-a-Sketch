@@ -1,88 +1,135 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Space+Mono:wght@700&display=swap');
-$tabletsize: 48em; 
-$mobilesize: 25em;
-@mixin flex-all-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 body{
-    font-family: 'Space Mono', monospace;
-    background-color: #878787;
+    height: 100vh;
+    background-color: #939393;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
 }
 #header-container{
-    background-color: #1E1E1E;
-    color:white;
-    min-height: 30px;
-    padding: 0px 150px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    a{
-        color:white;
-        text-decoration: none;
+    color: #2b2b2b;
+    width: 600px;
+    .my-social{
+        a{
+            color: inherit;
+            text-decoration: none;
+            font-size: 1.25rem;
+        }
+        i{
+            font-size: 1.25rem;
+            transition: 250ms ease-in-out;
+            &:hover{
+                color:white;
+            }
+        }
     }
 }
-.container{
-    padding: 10px 150px;
+#main{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    #btn-grid{
-        font-size: 20px;
-        width: 60px;
-        height: 30px;
-        border-radius: 10px;
-        border:none;
-        cursor: pointer;
-        transition: 250ms ease-in-out;
-        &:hover{
-            background-color: #1E1E1E;
+    #options{
+        display: flex;
+        gap: 13px;
+        justify-content: center;
+        .btn-style{
+            width: 80px;
+            height: 30px;
+            background-color: #939393;
             color: white;
+            border: 1px solid white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 250ms ease-in-out;
+            &:hover{
+                background-color: white;
+                color:#939393;
+            }
+        }
+        .active{
+            background-color: white;
+            color:#939393;
         }
     }
-    #btn-minus,#btn-add,#btn-trash{
-        @extend #btn-grid;
+    #grid-container{
+        width: 600px;
+        height: 600px;
+        background-color: white;
+        box-shadow: 0px 0px 10px 1px #5a5a5a;
     }
 }
-.information{
-    font-family: 'Inter', sans-serif;
-    padding: 0px 150px;
-    text-align: center;
-    @include flex-all-center();
-}
-@media screen and (max-width:$tabletsize){
+//Tablet Size
+@media screen and (max-width:40.625em){
     #header-container{
-        padding: 0px 20px;
+        width: 400px;
+        #header-text{
+            font-size: 1rem;
+        }
+        .my-social{
+            a{
+                font-size: 0.7rem;
+            }
+            i{
+                font-size: 0.7rem;
+            }
+        }
     }
-    .container{
-        padding: 10px 20px;
-    }
-    .information{
-        padding: 0px 20px;
+    #main{
+        #options{
+            gap: 7.5px;
+            .btn-style{
+                width: 60px;
+                height: 20px;
+                font-size: 0.6rem;
+            }
+        }
+        #grid-container{
+            width: 400px;
+            height: 400px;
+        }
     }
 }
-@media screen and (max-width:$mobilesize){
+//Phone Size
+@media screen and (max-width: 26.25em){
     #header-container{
-        @include flex-all-center();
-        flex-direction: column;
-        padding: 0px 2.5px;
+        width: 300px;
+        #header-text{
+            font-size: 0.8rem;
+        }
+        .my-social{
+            a{
+                font-size: 0.7rem;
+            }
+            i{
+                font-size: 0.7rem;
+            }
+        }
     }
-    .container{
-        padding: 10px 2.5px;
-    }
-    #buttons{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-    }
-    .information{
-        padding: 0px 2.5px;
+    #main{
+        #options{
+            gap: 7.5px;
+            .btn-style{
+                width: 40px;
+                height: 15px;
+                font-size: 0.5rem;
+            }
+        }
+        #grid-container{
+            width: 300px;
+            height: 300px;
+        }
     }
 }

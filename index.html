@@ -5,27 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/style.css">
-    <script src="script.js" defer></script>
-    <script src="https://kit.fontawesome.com/12ee08d42e.js" crossorigin="anonymous"></script>
     <title>Etch-a-Sketch</title>
+    <script src="https://kit.fontawesome.com/12ee08d42e.js" crossorigin="anonymous"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <header id="header-container">
         <h1 id="header-text">Etch-a-Sketch</h1>
-        <a href="https://github.com/marcelee0713">Marcelee</a>
+        <div class="my-social">
+            <a href="https://github.com/marcelee0713">Marcelee <i class="fa-brands fa-github"></i></a>
+        </div>
     </header>
-    <div class="container">
-        <div id="buttons">
-            <button id="btn-grid"><i class="fa-solid fa-table-cells"></i></button>
-            <button id="btn-add"><i class="fa-solid fa-plus"></i></button>
-            <button id="btn-minus"><i class="fa-solid fa-minus"></i></button>
-            <button id="btn-trash"><i class="fa-solid fa-trash-can"></i></button>
+    <div id="main">
+        <div id="options">
+            <button id="btn-draw" class="btn-style">Draw</button>
+            <button id="btn-r-draw" class="btn-style">Rainbow</button>
+            <button id="btn-erase" class="btn-style">Erase</button>
+            <button id="btn-clear" class="btn-style">Clear</button>
+            <button id="btn-size" class="btn-style">Size</button>
         </div>
-        <div class="grid-container">
+        <div id="grid-container">
+        
         </div>
-    </div>
-    <div class="information">
-        <p>If the grid's are overflowing you can press the minus or trash button. In order to avoid complications</p>
     </div>
 </body>
 </html>

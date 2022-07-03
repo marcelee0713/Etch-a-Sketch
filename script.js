@@ -1,70 +1,91 @@
-const container = document.querySelector('.grid-container');
-const addGridBtn = document.querySelector('#btn-grid'); 
-const addBoxBtn = document.querySelector('#btn-add');
-const removeBoxBtn = document.querySelector('#btn-minus');
-const removeGridBtn = document.querySelector('#btn-trash');
+const DEFAULTSIZE = 16;
+const DEFAULTMODE = 'color';
 
-addGridBtn.addEventListener('click', inputGridCount);
-removeBoxBtn.addEventListener('click', removeOneChild);
-addBoxBtn.addEventListener('click', addOneChild);
-removeGridBtn.addEventListener('click', removeGrid);
+let defaultsize = DEFAULTSIZE;
+let defaultMode = DEFAULTMODE;
+
+const container = document.querySelector('#grid-container');
+const buttonDraw = document.querySelector('#btn-draw');
+const buttonRDraw = document.querySelector('#btn-r-draw');
+const buttonErase = document.querySelector('#btn-erase');
+const buttonClear = document.querySelector('#btn-clear');
+const buttonSize = document.querySelector('#btn-size');
+
+buttonDraw.onclick = () => changeMode('color');
+buttonRDraw.onclick = () => changeMode('rainbow');
+buttonErase.onclick = () => changeMode('eraser');
+buttonClear.addEventListener('click', gridClear);
+buttonSize.addEventListener('click', gridSize);
 
 
-function inputGridCount(){
-    let input = parseInt(prompt("Enter how many columns and row you want to add."));
-    while(input >= 101){
-        input = parseInt(prompt("Sorry, you can only enter 1 to 100."));
-    }
-    while(typeof input == 'string'){
-        input = parseInt(prompt("Sorry, you can only enter a number"));
-    }
-    console.log(typeof input);
-    return createBoxes(input);
+function gridClear(){
+    container.innerHTML = '';
+    createBoxes(defaultsize);
 }
+function gridSize(){
+    let input = prompt("Enter a whole number.");
+    defaultsize = input;
+    container.innerHTML = '';
+    createBoxes(defaultsize);
+}
+
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
 document.body.onmouseup = () => (mouseDown = false)
 
-function createBoxes(userInput){
-    let gridCount = userInput;
-    let grids = gridCount * gridCount;
+
+
+function createBoxes(size){
     container.style.display = 'grid';
-    container.style.gridTemplateColumns = "repeat("+gridCount+",auto)"
-    for(let i = 1; i <= grids; i++){
+    container.style.gridTemplateColumns = `repeat(${size},1fr)`;
+    container.style.gridTemplateRows = `repeat(${size},1fr)`;
+    for(let i = 1; i <= size * size; i++){
         let gridBox = document.createElement('div');
-        gridBox.style.backgroundColor = 'white';
-        gridBox.style.border = "1px solid black";
-        gridBox.style.padding = '20px';
+        gridBox.classList.add('grid-Element')
         container.appendChild(gridBox);
-        gridBox.addEventListener('mouseover', draw);
-        gridBox.addEventListener('mousedown', draw);
+        gridBox.addEventListener('mouseover', changeColor);
+        gridBox.addEventListener('mousedown', changeColor);
     }
 }
-
-function removeOneChild(){
-    container.lastElementChild.remove();
-}
-function removeGrid(){
-    while(container.lastElementChild){
-        container.lastElementChild.remove();
-    }
-}
-function addOneChild(){
-    let gridBox = document.createElement('div');
-    gridBox.style.backgroundColor = 'white';
-    gridBox.style.border = "1px solid black";
-    gridBox.style.padding = '20px';
-    container.appendChild(gridBox);
-    gridBox.addEventListener('mouseover', draw);
-}
-
-function draw(e){
+function changeColor(e){
     if (e.type === 'mouseover' && !mouseDown) return
-    let x = Math.floor(Math.random()*255);
-    let y = Math.floor(Math.random()*255);
-    let z = Math.floor(Math.random()*255);
-    e.target.style.backgroundColor = "rgb("+x+","+y+","+z+")";
-}
-//default 8x8
-createBoxes(8);
 
+    if(defaultMode === 'color'){
+        e.target.style.backgroundColor = '#2b2b2b';
+    }
+    else if (defaultMode == 'rainbow'){
+        const R = Math.floor(Math.random()*256);
+        const G = Math.floor(Math.random()*256);
+        const B = Math.floor(Math.random()*256);
+        e.target.style.backgroundColor = `rgb(${R},${G},${B})`;
+    }
+    else if(defaultMode === 'eraser'){
+        e.target.style.backgroundColor = 'white';
+    }
+}
+function changeMode(newMode){
+    activeMode(newMode);
+    defaultMode = newMode;
+}
+function activeMode(newMode){
+    if(defaultMode === 'color'){
+        buttonDraw.classList.remove('active');
+    }
+    else if(defaultMode === 'rainbow'){
+        buttonRDraw.classList.remove('active');
+    }
+    else if(defaultMode === 'eraser'){
+        buttonErase.classList.remove('active');
+    }
+
+    if(newMode === 'color'){
+        buttonDraw.classList.add('active');
+    }
+    else if(newMode === 'rainbow'){
+        buttonRDraw.classList.add('active');
+    }
+    else if(newMode === 'eraser'){
+        buttonErase.classList.add('active');
+    }
+}
+createBoxes(defaultsize);
