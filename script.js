@@ -24,12 +24,11 @@ function gridClear(){
 function gridSize(){
     let input = prompt("Enter a whole number.");
     while(input >= 101){
-        input = prompt("Sorry, you can only enter 1 to 101.");
+        input = prompt("Sorry, you can only enter 1 to 100.");
     }
     while(isNaN(input) === true){
         input = prompt("Sorry, you can only a whole number.");
     }
-    console.log(typeof input);
     defaultsize = input;
     container.innerHTML = '';
     createBoxes(defaultsize);
