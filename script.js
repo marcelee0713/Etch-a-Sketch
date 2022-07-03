@@ -17,13 +17,19 @@ buttonErase.onclick = () => changeMode('eraser');
 buttonClear.addEventListener('click', gridClear);
 buttonSize.addEventListener('click', gridSize);
 
-
 function gridClear(){
     container.innerHTML = '';
     createBoxes(defaultsize);
 }
 function gridSize(){
     let input = prompt("Enter a whole number.");
+    while(input >= 101){
+        input = prompt("Sorry, you can only enter 1 to 101.");
+    }
+    while(isNaN(input) === true){
+        input = prompt("Sorry, you can only a whole number.");
+    }
+    console.log(typeof input);
     defaultsize = input;
     container.innerHTML = '';
     createBoxes(defaultsize);
@@ -32,8 +38,6 @@ function gridSize(){
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
 document.body.onmouseup = () => (mouseDown = false)
-
-
 
 function createBoxes(size){
     container.style.display = 'grid';
